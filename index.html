@@ -1,3 +1,387 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: var(--color-text-primary);
+  --muted: var(--color-text-secondary);
+  --hint: var(--color-text-tertiary);
+  --surface: var(--color-background-primary);
+  --surface2: var(--color-background-secondary);
+  --border: var(--color-border-tertiary);
+  --accent: #2563EB;
+  --accent2: #7C3AED;
+  --success: #059669;
+  --warn: #D97706;
+  --r: var(--border-radius-md);
+  --rl: var(--border-radius-lg);
+}
+
+body { font-family: 'DM Sans', sans-serif; color: var(--ink); line-height: 1.6; }
+
+.readme { padding: 0 0 3rem; max-width: 660px; margin: 0 auto; }
+
+/* HERO */
+.hero { padding: 2.5rem 0 2rem; border-bottom: 0.5px solid var(--border); margin-bottom: 2rem; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--surface2); border: 0.5px solid var(--border); border-radius: 20px; padding: 4px 12px; font-size: 11px; color: var(--muted); font-family: 'Space Mono', monospace; margin-bottom: 1rem; letter-spacing: 0.02em; }
+.hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #10B981; flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+.hero h1 { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 28px; line-height: 1.25; color: var(--ink); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+.hero h1 strong { font-weight: 500; }
+.hero-sub { font-size: 14px; color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 1.5rem; }
+
+.hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; }
+.tag { display: inline-flex; align-items: center; gap: 5px; background: var(--surface2); border: 0.5px solid var(--border); border-radius: 20px; padding: 4px 10px; font-size: 12px; color: var(--muted); }
+.tag-blue { background: #EFF6FF; border-color: #BFDBFE; color: #1D4ED8; }
+.tag-purple { background: #F5F3FF; border-color: #DDD6FE; color: #6D28D9; }
+.tag-green { background: #ECFDF5; border-color: #A7F3D0; color: #065F46; }
+@media (prefers-color-scheme: dark) {
+  .tag-blue { background: #1E3A5F; border-color: #1D4ED8; color: #93C5FD; }
+  .tag-purple { background: #2E1065; border-color: #6D28D9; color: #C4B5FD; }
+  .tag-green { background: #064E3B; border-color: #065F46; color: #6EE7B7; }
+}
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: var(--r); font-size: 13px; font-weight: 500; cursor: pointer; border: 0.5px solid var(--border); background: var(--surface); color: var(--ink); transition: background .15s, border-color .15s; text-decoration: none; }
+.btn:hover { background: var(--surface2); border-color: var(--color-border-secondary); }
+.btn-primary { background: var(--ink); color: var(--surface); border-color: transparent; }
+.btn-primary:hover { opacity: 0.85; background: var(--ink); }
+
+/* SECTION */
+.section { margin-bottom: 2rem; }
+.section-title { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--hint); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+.section-title::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+
+/* FEATURE CARDS */
+.feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.feat { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--rl); padding: 1rem; cursor: pointer; transition: border-color .15s, background .15s; }
+.feat:hover { border-color: var(--color-border-secondary); background: var(--surface2); }
+.feat-icon { width: 32px; height: 32px; border-radius: var(--r); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; font-size: 16px; }
+.feat-icon-blue { background: #EFF6FF; }
+.feat-icon-purple { background: #F5F3FF; }
+.feat-icon-green { background: #ECFDF5; }
+.feat-icon-amber { background: #FFFBEB; }
+@media (prefers-color-scheme: dark) {
+  .feat-icon-blue { background: #1E3A5F; }
+  .feat-icon-purple { background: #2E1065; }
+  .feat-icon-green { background: #064E3B; }
+  .feat-icon-amber { background: #451A03; }
+}
+.feat h3 { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.feat p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* ARCHITECTURE DIAGRAM */
+.arch { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--rl); padding: 1.25rem; overflow: hidden; }
+
+/* PERFORMANCE TABLE */
+.perf-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.perf-table th { font-size: 11px; font-weight: 500; color: var(--muted); text-align: left; padding: 0 12px 10px; letter-spacing: 0.04em; border-bottom: 0.5px solid var(--border); }
+.perf-table td { padding: 10px 12px; border-bottom: 0.5px solid var(--border); color: var(--ink); vertical-align: middle; }
+.perf-table tr:last-child td { border-bottom: none; }
+.pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 500; }
+.pill-good { background: #ECFDF5; color: #065F46; border: 0.5px solid #A7F3D0; }
+.pill-ok { background: #FFFBEB; color: #92400E; border: 0.5px solid #FDE68A; }
+@media (prefers-color-scheme: dark) {
+  .pill-good { background: #064E3B; color: #6EE7B7; border-color: #065F46; }
+  .pill-ok { background: #451A03; color: #FCD34D; border-color: #78350F; }
+}
+
+/* METRICS ROW */
+.metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.metric { background: var(--surface2); border-radius: var(--r); padding: 14px; }
+.metric-label { font-size: 11px; color: var(--hint); margin-bottom: 4px; font-family: 'Space Mono', monospace; }
+.metric-value { font-size: 22px; font-weight: 500; color: var(--ink); letter-spacing: -0.02em; font-family: 'DM Sans', sans-serif; }
+.metric-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* CODE BLOCK */
+.code-block { background: var(--surface2); border: 0.5px solid var(--border); border-radius: var(--r); padding: 1rem; font-family: 'Space Mono', monospace; font-size: 12px; color: var(--ink); line-height: 1.7; overflow-x: auto; position: relative; }
+.code-block .c-comment { color: var(--hint); }
+.code-block .c-cmd { color: #2563EB; }
+.code-block .c-str { color: #059669; }
+
+/* EQUATION */
+.eq { background: var(--surface2); border-left: 2px solid var(--color-border-info); border-radius: 0 var(--r) var(--r) 0; padding: 0.75rem 1rem; font-family: 'Space Mono', monospace; font-size: 13px; color: var(--ink); margin: 0.75rem 0; }
+.eq-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; font-family: 'DM Sans', sans-serif; }
+
+/* STRUCTURE TREE */
+.tree { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--ink); line-height: 1.9; background: var(--surface2); border: 0.5px solid var(--border); border-radius: var(--rl); padding: 1rem 1.25rem; }
+.tree .d { color: var(--muted); }
+.tree .f { color: var(--ink); }
+.tree .hl { color: #2563EB; }
+.tree .note { color: var(--hint); font-style: italic; }
+
+/* TRAJECTORY TABS */
+.traj-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.traj-tab { padding: 5px 12px; border-radius: 20px; border: 0.5px solid var(--border); background: var(--surface); font-size: 12px; color: var(--muted); cursor: pointer; transition: all .15s; }
+.traj-tab.active { background: var(--ink); color: var(--surface); border-color: transparent; }
+.traj-panel { display: none; }
+.traj-panel.active { display: block; }
+
+/* STEP */
+.step-row { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+.step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--surface2); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--muted); flex-shrink: 0; margin-top: 1px; font-family: 'Space Mono', monospace; }
+.step-body { flex: 1; }
+.step-body h4 { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.step-body p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* MINI CHART */
+canvas.mini-chart { width: 100%; height: 120px; }
+
+/* REFS */
+.ref { display: flex; gap: 10px; padding: 10px 0; border-bottom: 0.5px solid var(--border); font-size: 12px; }
+.ref:last-child { border-bottom: none; }
+.ref-num { font-family: 'Space Mono', monospace; color: var(--hint); flex-shrink: 0; width: 20px; margin-top: 1px; }
+.ref-text { color: var(--muted); line-height: 1.5; }
+.ref-text strong { color: var(--ink); font-weight: 500; }
+
+/* FOOTER */
+.footer { border-top: 0.5px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; font-size: 12px; color: var(--hint); }
+.footer-authors { display: flex; flex-direction: column; gap: 2px; }
+.author-chip { display: inline-flex; align-items: center; gap: 6px; }
+.avatar { width: 20px; height: 20px; border-radius: 50%; background: var(--surface2); border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500; color: var(--muted); flex-shrink: 0; }
+</style>
+
+<div class="readme">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge"><span class="dot"></span>MSc Thesis · ITMO St. Petersburg · 2026</div>
+    <h1>Indirect Adaptive Control for<br><strong>Robotic Arms</strong> Under Uncertainty</h1>
+    <p class="hero-sub">A 3-DOF / 6-DOF controller combining state feedback linearization, recursive parameter estimation (RLS), and a high-gain observer — robust to noise and unknown dynamics.</p>
+    <div class="hero-meta">
+      <span class="tag tag-blue"><i class="ti ti-robot" aria-hidden="true"></i> 3-DOF & 6-DOF</span>
+      <span class="tag tag-purple"><i class="ti ti-math-function" aria-hidden="true"></i> Adaptive Control</span>
+      <span class="tag tag-green"><i class="ti ti-check" aria-hidden="true"></i> MuJoCo Validated</span>
+      <span class="tag"><i class="ti ti-brand-python" aria-hidden="true"></i> Python 3.13</span>
+      <span class="tag"><i class="ti ti-license" aria-hidden="true"></i> MIT License</span>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://github.com/Raha-Mir/robotic-arm-control" target="_blank"><i class="ti ti-brand-github" aria-hidden="true"></i> View on GitHub</a>
+      <button class="btn" onclick="sendPrompt('How do I install and run the robotic arm control simulation?')"><i class="ti ti-play" aria-hidden="true"></i> Quick start</button>
+      <button class="btn" onclick="sendPrompt('Explain the math behind the adaptive control method in this project')"><i class="ti ti-math" aria-hidden="true"></i> How it works</button>
+    </div>
+  </div>
+
+  <!-- PERFORMANCE METRICS -->
+  <div class="section">
+    <div class="section-title">Key results</div>
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Position RMSE</div>
+        <div class="metric-value">0.010</div>
+        <div class="metric-sub">rad · Exp. 1 (3-DOF)</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Param error</div>
+        <div class="metric-value">&lt;0.17%</div>
+        <div class="metric-sub">all 9 parameters</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">DOF tested</div>
+        <div class="metric-value">3 + 6</div>
+        <div class="metric-sub">sim + MuJoCo UR5e</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT IS THIS? (for amateurs) -->
+  <div class="section">
+    <div class="section-title">What does this do?</div>
+    <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;">
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1rem;">Imagine a robot arm that doesn't know its own weight, or how heavy the object it's holding is. This project teaches the arm to figure that out <em>on the fly</em> — while still moving to the right place, smoothly and accurately.</p>
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-body"><h4>Measure position only</h4><p>Only joint angles are read. Velocity must be guessed — that's the observer's job.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-body"><h4>Estimate unknown parameters</h4><p>The RLS algorithm watches the arm move and updates its model of mass, inertia, and friction in real time.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-body"><h4>Control with estimated knowledge</h4><p>The controller uses these estimates to compute the exact torques needed — even as conditions change.</p></div>
+      </div>
+      <button class="btn" style="margin-top:0.5rem;font-size:12px" onclick="sendPrompt('Give me a beginner-friendly explanation of adaptive control for robotics')"><i class="ti ti-bulb" aria-hidden="true"></i> Explain for beginners ↗</button>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section">
+    <div class="section-title">Core components</div>
+    <div class="feature-grid">
+      <div class="feat" onclick="sendPrompt('Explain state feedback linearization in robotics')">
+        <div class="feat-icon feat-icon-blue"><i class="ti ti-adjustments" style="color:#2563EB" aria-hidden="true"></i></div>
+        <h3>State Feedback Controller</h3>
+        <p>Uses inverse dynamics to cancel nonlinear effects, reducing the problem to a simple linear system.</p>
+      </div>
+      <div class="feat" onclick="sendPrompt('What is a high-gain observer and why is it used here?')">
+        <div class="feat-icon feat-icon-purple"><i class="ti ti-eye" style="color:#7C3AED" aria-hidden="true"></i></div>
+        <h3>High-Gain Observer (HGO)</h3>
+        <p>Estimates joint velocities from noisy position measurements only — no velocity sensor needed.</p>
+      </div>
+      <div class="feat" onclick="sendPrompt('How does the RLS parameter estimation algorithm work?')">
+        <div class="feat-icon feat-icon-amber"><i class="ti ti-chart-line" style="color:#D97706" aria-hidden="true"></i></div>
+        <h3>RLS Parameter Estimation</h3>
+        <p>Recursive least squares with forgetting factor tracks changing dynamic parameters in real time.</p>
+      </div>
+      <div class="feat" onclick="sendPrompt('What does Lyapunov stability analysis prove about this controller?')">
+        <div class="feat-icon feat-icon-green"><i class="ti ti-shield-check" style="color:#059669" aria-hidden="true"></i></div>
+        <h3>Lyapunov Stability</h3>
+        <p>Mathematically verifies that the closed-loop system is semi-globally practically exponentially stable.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATH -->
+  <div class="section">
+    <div class="section-title">Mathematical model</div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:0.75rem;">The manipulator dynamics follow the Euler-Lagrange formulation. The controller uses estimated versions of each term:</p>
+    <div class="eq"><div class="eq-label">Manipulator dynamics</div>τ = M(q)q̈ + C(q,q̇)q̇ + G(q)</div>
+    <div class="eq"><div class="eq-label">Adaptive control law (with observer state ξ̂)</div>τ = Ĉ(q,ξ̂₂)ξ̂₂ + Ĝ(q) + M̂(q)[q̈_ref − Kₚq̃ − Kd(ξ̂₂ − q̇_ref)]</div>
+    <div class="eq"><div class="eq-label">RLS update (θ̂ = parameter vector, Φ = regressor)</div>θ̂̇(t) = P(t)Φ̂(t)[τ(t) − Φ̂ᵀ(t)θ̂(t)]</div>
+    <button class="btn" style="font-size:12px;margin-top:0.5rem" onclick="sendPrompt('Walk me through the full math derivation of the adaptive control law')"><i class="ti ti-calculator" aria-hidden="true"></i> Full derivation ↗</button>
+  </div>
+
+  <!-- EXPERIMENTS -->
+  <div class="section">
+    <div class="section-title">Experiments</div>
+    <div class="traj-tabs">
+      <button class="traj-tab active" onclick="setTab(0)">3-DOF Sim</button>
+      <button class="traj-tab" onclick="setTab(1)">UR5e · Point-to-Point</button>
+      <button class="traj-tab" onclick="setTab(2)">UR5e · Circular</button>
+      <button class="traj-tab" onclick="setTab(3)">UR5e · Helical</button>
+    </div>
+    <div class="traj-panel active" id="tp0">
+      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;">
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Point-to-point trajectory with <strong>15% and 2% parameter changes</strong> mid-flight, in the presence of 0.25 rad measurement noise.</p>
+        <div style="overflow-x:auto">
+        <table class="perf-table" style="margin-top:0.25rem">
+          <thead><tr><th>Parameter</th><th>True</th><th>Estimated</th><th>Error</th></tr></thead>
+          <tbody>
+            <tr><td>θ₁</td><td>2.300</td><td>2.30067</td><td><span class="pill pill-good">0.02%</span></td></tr>
+            <tr><td>θ₂</td><td>1.800</td><td>1.80053</td><td><span class="pill pill-good">0.02%</span></td></tr>
+            <tr><td>θ₇</td><td>0.400</td><td>0.40054</td><td><span class="pill pill-ok">0.13%</span></td></tr>
+            <tr><td>θ₉</td><td>0.200</td><td>0.19966</td><td><span class="pill pill-ok">0.17%</span></td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div style="display:flex;gap:16px;margin-top:0.75rem;font-size:12px;color:var(--muted)">
+          <span>Position RMSE: <strong style="color:var(--ink)">0.0100 rad</strong></span>
+          <span>Velocity RMSE: <strong style="color:var(--ink)">0.0709 rad/s</strong></span>
+        </div>
+      </div>
+    </div>
+    <div class="traj-panel" id="tp1">
+      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;">
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;"><strong>UR5e (6-DOF)</strong> in MuJoCo 3.8.1. Quintic trajectory from rest q₀ = [0,0,0,0,0,0] → qf = [0,−1.57,1.57,1.57,1.57,0] rad. Position error converges to zero within ~4 s.</p>
+        <div style="background:var(--surface2);border-radius:var(--r);padding:0.75rem;font-size:12px;color:var(--muted)">λ=1.005 · p₀=10⁵I · ε=0.01 · κ₁=1 · κ₂=2 · Kₚ=diag(400×6) · Kd=diag(40×6)</div>
+      </div>
+    </div>
+    <div class="traj-panel" id="tp2">
+      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;">
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">Periodic joint-space circular motion in the (q₁,q₂) plane. The arm traces a circle of radius 0.3 rad at ω=2π/5 rad/s, continuously.</p>
+        <div class="eq" style="margin:0">q₁(t) = 0.3·sin(ωt) · · q₂(t) = −1.57 + 0.3(cos(ωt)−1)</div>
+      </div>
+    </div>
+    <div class="traj-panel" id="tp3">
+      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;">
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;">3D Cartesian helical path — the hardest test: fully coupled motion across all 6 joints simultaneously, with descending Z.</p>
+        <div class="eq" style="margin:0">x=xc+r·cos(ωt) · y=yc+r·sin(ωt) · z=z₀−(b/2π)ωt<br><span style="font-size:11px">r=0.1m · b=0.05m/rev · ω=2π/15 rad/s</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTALLATION -->
+  <div class="section">
+    <div class="section-title">Installation</div>
+    <div class="code-block">
+<span class="c-comment"># 1. Clone the repository</span>
+<span class="c-cmd">git clone</span> <span class="c-str">https://github.com/Raha-Mir/robotic-arm-control.git</span>
+<span class="c-cmd">cd</span> robotic-arm-control
+
+<span class="c-comment"># 2. Install dependencies</span>
+<span class="c-cmd">pip install</span> -r requirements.txt
+
+<span class="c-comment"># 3. Run the simulation</span>
+<span class="c-cmd">python</span> main.py
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+      <button class="btn" style="font-size:12px" onclick="sendPrompt('What are all the dependencies required to run this robotic arm control project?')"><i class="ti ti-package" aria-hidden="true"></i> View dependencies ↗</button>
+      <button class="btn" style="font-size:12px" onclick="sendPrompt('How do I configure the simulation parameters in config.py?')"><i class="ti ti-settings" aria-hidden="true"></i> Configuration ↗</button>
+    </div>
+  </div>
+
+  <!-- STRUCTURE -->
+  <div class="section">
+    <div class="section-title">Project structure</div>
+    <div class="tree">
+<span class="d">robot-manipulator-control/</span>
+├── <span class="hl">main.py</span>              <span class="note">← entry point</span>
+├── requirements.txt
+├── <span class="d">robot_control/</span>
+│   ├── <span class="hl">config.py</span>        <span class="note">← all parameters here</span>
+│   ├── <span class="d">core/</span>
+│   │   ├── <span class="hl">robot_dynamics.py</span>   <span class="note">M(q), C, G</span>
+│   │   ├── <span class="hl">controller.py</span>       <span class="note">state-feedback law</span>
+│   │   └── <span class="hl">observer.py</span>         <span class="note">HGO</span>
+│   ├── <span class="d">utils/</span>
+│   │   ├── <span class="hl">regressors.py</span>       <span class="note">Φ(q,q̇,q̈)</span>
+│   │   └── <span class="hl">reference_trajectories.py</span>
+│   ├── <span class="d">analysis/</span>
+│   │   └── <span class="hl">plotting.py</span>         <span class="note">visualisation</span>
+│   └── <span class="d">simulation/</span>
+│       └── <span class="hl">simulator.py</span>        <span class="note">main loop</span>
+└── <span class="d">tests/</span>
+    </div>
+    <button class="btn" style="font-size:12px;margin-top:10px" onclick="sendPrompt('Explain what each module in the robot_control package does')"><i class="ti ti-folder-open" aria-hidden="true"></i> Module docs ↗</button>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="section">
+    <div class="section-title">References</div>
+    <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:var(--rl);padding:1rem 1.25rem">
+      <div class="ref">
+        <div class="ref-num">[1]</div>
+        <div class="ref-text"><strong>Zhivitskii, Borisov & Dovgopolik (2022)</strong> · Parameter estimation and indirect adaptive control of a robot arm. CoDIT, IEEE.</div>
+      </div>
+      <div class="ref">
+        <div class="ref-num">[2]</div>
+        <div class="ref-text"><strong>Liaquat et al. (2017)</strong> · A nonlinear high-gain observer for n-link robot manipulator with measurement noise. ICCAS, IEEE.</div>
+      </div>
+      <div class="ref">
+        <div class="ref-num">[3]</div>
+        <div class="ref-text"><strong>Tran et al. (2025)</strong> · Dynamic parameter estimation for a 6-DOF manipulator using RLS in practice. Journal of Robotics.</div>
+      </div>
+      <div class="ref">
+        <div class="ref-num">[4]</div>
+        <div class="ref-text"><strong>Siciliano et al. (2008)</strong> · Springer Handbook of Robotics.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-authors">
+      <div class="author-chip"><div class="avatar">MR</div> Mohadeseh Mir (Raha) · MSc Student</div>
+      <div class="author-chip" style="margin-top:4px"><div class="avatar">OB</div> Sup: Assoc. Prof. Borisov · Adv: A. Zhivitsky</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+      <span>ITMO University · 2026</span>
+      <span style="display:flex;align-items:center;gap:4px"><i class="ti ti-license" aria-hidden="true"></i> MIT</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setTab(idx) {
+  document.querySelectorAll('.traj-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  document.querySelectorAll('.traj-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+}
+</script>
 <!DOCTYPE html>
 <html>
 <head>
